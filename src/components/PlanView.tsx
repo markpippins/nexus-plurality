@@ -5,7 +5,7 @@ import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 
 export function PlanView() {
-  const { activeWorkRequest, planIR, critiqueIR, BackendService } = useSimulation();
+  const { activeWorkRequest, planIR, critiqueIR, approvePlan } = useSimulation();
 
   if (!activeWorkRequest) {
     return <div className="flex-1 flex flex-col border-r border-gray-800 bg-gray-900 justify-center items-center text-gray-500 text-sm">Select a WorkRequest</div>;
@@ -84,7 +84,7 @@ export function PlanView() {
              {activeWorkRequest.status === 'APPROVAL' && (
                 <div className="flex space-x-3 pt-2">
                    <button 
-                     onClick={() => BackendService.approvePlan(activeWorkRequest.id)}
+                     onClick={() => approvePlan(activeWorkRequest.id)}
                      className="flex-1 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium py-2 rounded transition-colors"
                    >
                      Approve Plan

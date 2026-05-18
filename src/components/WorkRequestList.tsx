@@ -4,7 +4,7 @@ import { Target, ChevronRight, ChevronDown, Plus } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 export function WorkRequestList() {
-  const { workRequests, activeWorkRequest, BackendService } = useSimulation();
+  const { workRequests, activeWorkRequest, createWorkRequest, setActiveWorkRequest } = useSimulation();
   const [collapsed, setCollapsed] = useState(false);
 
   if (collapsed) {
@@ -21,7 +21,7 @@ export function WorkRequestList() {
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-800/50 hover:bg-gray-800/20 cursor-pointer" onClick={() => setCollapsed(true)}>
         <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Work Requests</span>
         <div className="flex items-center space-x-2">
-           <button onClick={(e) => { e.stopPropagation(); BackendService.createWorkRequest('New User Request'); }} className="p-1 hover:bg-gray-700 rounded text-gray-400 hover:text-gray-200">
+           <button onClick={(e) => { e.stopPropagation(); createWorkRequest('New User Request'); }} className="p-1 hover:bg-gray-700 rounded text-gray-400 hover:text-gray-200">
              <Plus className="w-3 h-3" />
            </button>
            <ChevronDown className="w-4 h-4 text-gray-500" />
@@ -31,7 +31,7 @@ export function WorkRequestList() {
         {workRequests.map(wr => (
           <div 
             key={wr.id}
-            onClick={() => BackendService.setActiveWorkRequest(wr)}
+            onClick={() => setActiveWorkRequest(wr)}
             className={cn(
               "px-3 py-2 rounded-md cursor-pointer flex flex-col space-y-1 transition-colors",
               activeWorkRequest?.id === wr.id 

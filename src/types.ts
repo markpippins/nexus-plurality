@@ -42,6 +42,7 @@ export type AppState = 'NEW' | 'PLAN' | 'REVIEW' | 'APPROVAL' | 'SPEC' | 'EXEC' 
 
 export interface WorkRequest {
   id: string;
+  dbId?: number;
   intent: string;
   status: AppState;
   created_at: Date;
@@ -128,5 +129,27 @@ export interface ActiveAgent {
   name: string;
   role: string;
   status: 'idle' | 'working' | 'waiting';
+}
+
+export interface Branch {
+  branch_id: string;
+  wr_id: string;
+  parent_branch_id: string | null;
+  fork_point: string | null;
+  label: string | null;
+  score: number | null;
+  status: string;
+  created_at: string;
+}
+
+export interface BranchArtifact {
+  artifact_id: string;
+  branch_id: string;
+  wr_id: string;
+  artifact_type: string;
+  content: string;
+  parent_artifact_id: string | null;
+  score: number | null;
+  created_at: string;
 }
 

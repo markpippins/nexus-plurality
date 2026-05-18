@@ -4,7 +4,7 @@ import { File, Folder, ChevronRight, ChevronDown, AlignLeft, Users } from 'lucid
 import { FileNode } from '../types';
 import { cn } from '../lib/utils';
 
-function TreeNode({ node, depth = 0 }: { node: FileNode, depth?: number }) {
+function TreeNode({ node, depth = 0 }: { node: FileNode; depth?: number; key?: string | number }) {
   const [isOpen, setIsOpen] = useState(node.isOpen !== false);
   const isFolder = node.type === 'folder';
 
