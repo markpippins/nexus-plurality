@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
-import { Settings, Network } from 'lucide-react';
+import { Settings, Network, ChevronRight } from 'lucide-react';
 import { AVAILABLE_PROVIDERS } from '../services/SimulatedBackendService';
 
-export function TopBar() {
+interface BreadcrumbPart {
+  label: string;
+  icon: string;
+  level: string;
+}
+
+interface TopBarProps {
+  breadcrumbs?: BreadcrumbPart[];
+}
+
+export function TopBar({ breadcrumbs = [] }: TopBarProps) {
   const [plannerProvider, setPlannerProvider] = useState(AVAILABLE_PROVIDERS[1]);
   const [plannerModel, setPlannerModel] = useState(AVAILABLE_PROVIDERS[1].models[0]);
   
@@ -16,6 +26,24 @@ export function TopBar() {
           NX
         </div>
         <span className="font-semibold text-gray-100 tracking-wide">NEXUS DUALITY <span className="text-gray-500 font-normal">LOSM Operator</span></span>
+
+        {/* Addressbar Breadcrumbs */}
+        {breadcrumbs.length > 0 && (
+          <div className="flex items-center ml-4 pl-4 border-l border-gray-700">
+            {breadcrumbs.map((part, i) => (
+              <React.Fragment key={`${part.level}-${part.label}`}>
+                {i > 0 && <ChevronRight className="w-3 h-3 text-gray-600 mx-1" />}
+                <span className={`text-xs px-1.5 py-0.5 rounded ${
+                  part.level === 'system' ? 'bg-blue-900/30 text-blue-300' :
+                  part.level === 'subsystem' ? 'bg-purple-900/30 text-purple-300' :
+                  'bg-emerald-900/30 text-emerald-300'
+                }`}>
+                  {part.label}
+                </span>
+              </React.Fragment>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="flex items-center space-x-6">
