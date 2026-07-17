@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Settings, Network, ChevronRight } from 'lucide-react';
+import { Network, ChevronRight } from 'lucide-react';
 import { AVAILABLE_PROVIDERS } from '../services/SimulatedBackendService';
 
 interface BreadcrumbPart {
@@ -96,10 +96,6 @@ export function TopBar({ breadcrumbs = [] }: TopBarProps) {
             {coderProvider.models.map(m => <option key={m} value={m}>{m}</option>)}
           </select>
         </div>
-      </div>
-
-      <div>
-        <Settings className="w-5 h-5 text-gray-400 hover:text-gray-200 cursor-pointer" />
       </div>
     </div>
   );
