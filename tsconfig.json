@@ -19,9 +19,6 @@
     "paths": {
       "@/*": [
         "./*"
-      ],
-      "@shared/*": [
-        "../shared-react/*"
       ]
     },
     "allowImportingTsExtensions": true,
@@ -29,7 +26,6 @@
     "typeRoots": ["node_modules/@types"]
   },
   "include": [
-    "src/**/*",
-    "../shared-react/**/*"
+    "src/**/*"
   ]
 }

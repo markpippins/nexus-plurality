@@ -3,7 +3,6 @@ import { WorkRequestList } from './components/WorkRequestList';
 import { PlanView } from './components/PlanView';
 import { ExecutionView } from './components/ExecutionView';
 import { FileTreeSidebar } from './components/FileTreeSidebar';
-import { TerminalPanel } from './components/TerminalPanel';
 import { StateTimeline } from './components/StateTimeline';
 
 const EVENT_BUS_URL = 'http://localhost:3200';
@@ -72,9 +71,7 @@ export default function App() {
             <PlanView />
             <ExecutionView />
           </div>
-          
-          {/* Bottom Panel */}
-          <TerminalPanel />
+
         </div>
 
         <FileTreeSidebar />
